@@ -1,0 +1,57 @@
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { Form, Table, Modal, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
+import axios from 'axios';
+import moment from "moment";
+import Header from '../../elements/front/Header';
+import { Button } from 'react-bootstrap';
+require('dotenv').config({ path: __dirname + '/.env' })
+
+
+export default class ManageesGrid extends Component {
+	constructor() {
+		super();
+	this.state={}
+	}
+	componentDidMount() {
+	
+	}
+
+	render() {
+	return (
+		<div class="row" style={{ "margin-top": "20px" }}>
+					<Table striped bordered hover size="sm">
+						<thead>
+							<tr>
+								<th className="centerFont">id</th>
+								<th className="centerFont">Product Name</th>
+								<th className="centerFont">Product category</th>
+								<th className="centerFont">size</th>
+								<th className="centerFont">Product Type</th>
+								<th className="centerFont">Color</th>
+								<th className="centerFont">Options</th>
+							</tr>
+						</thead>
+						<tbody>
+							{
+								this.state.records.map((item, key) => (
+									<tr key={key}>
+										<td className="centerFont">{key + 1}</td>
+										<td className="centerFont">{item.Name}</td>
+										<td className="centerFont">{item.category}</td>
+										<td className="centerFont">{item.size}</td>
+										<td className="centerFont">{item.product_type}</td>
+										<td className="centerFont">{item.color}</td>
+										<td className="centerFont">
+											<a onClick={() => this.update(item.id)} style={{ "color": "blue" }} >Update</a> |  <a onClick={() => this.delete(item._id)} style={{ "color": "blue" }}>Delete</a>
+										</td>
+									</tr>	
+								))
+							}
+						</tbody>
+					</Table>
+				</div>
+
+	)}
+}
+
